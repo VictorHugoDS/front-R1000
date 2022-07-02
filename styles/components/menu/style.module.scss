@@ -1,0 +1,42 @@
+@import 'styles/var';
+
+.menu {
+  width: 100%;
+  background-color: $c-blue;
+  text-align: center;
+  padding: 14px 16px;
+  display: flex;
+  justify-content: left;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+
+.line{
+  display: inline;
+}
+
+.line:first-child{
+  margin-right: 5rem;
+}
+
+
+.link{
+  color: $c-white;
+  text-decoration: none;
+  margin:1rem;
+
+}
+
+.link:hover{
+  color: rgb(136, 136, 136);
+  text-decoration: underline;
+  margin:1rem;
+
+}
+
+.link:active {
+  color: $c-gray;
+  // margin:1rem;
+  // background-color: red;
+}
