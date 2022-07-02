@@ -2,11 +2,12 @@ import style from '../../styles/components/menu/style.module.scss';
 
 export default function menu() {
 
+  // a Key (lado esquerdo) é oq irá aparecer no menu
+  // o valor (lado direito) é o link
+
   const itensMenu = {
-    Home:'Homeeee',
-    News:'News',
-    Contact:'Contact',
-    About:'About'
+    Evento_R100:'Homeeee',
+    Home:'',
   }
 
 
@@ -15,6 +16,7 @@ export default function menu() {
         {Object.keys(itensMenu).map((key)=>{
           return (
             <li className={style.line} key={key}>
+              {/*Alterar Href no futuro*/ }
               <a href={`/#`} className={style.link}>{key}</a>
             </li>
           )
