@@ -5,3 +5,12 @@ body {
   font-family: 'Inter', sans-serif;
 }
 
+/* Menu */
+.areaMenu{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: --blue;
+  width: 100%;
+  padding: 20px;
+  font-size: 100%;
+  text-align: center;
+}
