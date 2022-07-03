@@ -6,26 +6,40 @@ export default function Eventos() {
 
     const cards = [
         {
+            id: 0,
             Recibo: 'Numero do recibo',
             data_inicio: new Date(),
             data_fim: new Date,
         },
         {
+            id: 1,
             Recibo: 'Numero do recibo',
             data_inicio: new Date(),
             data_fim: new Date,
         },
         {
+            id: 2,
             Recibo: 'Numero do recibo',
             data_inicio: new Date(),
             data_fim: new Date,
         },
         {
+            id: 3,
             Recibo: 'Numero do recibo',
             data_inicio: new Date(),
             data_fim: new Date,
         }
     ]
+
+
+    const handleDelete = (e, idCard) => {
+        e.preventDefault();
+        cards.forEach((card, ind) => {
+            if (card.id === idCard) {
+                cards.splice(1, ind);
+            }
+        })
+    }
 
     return (
         <Layout>
@@ -56,7 +70,7 @@ export default function Eventos() {
                                     </div>
                                     <div>
                                         <button className="button-edit">Editar</button>
-                                        <button className="button-excluir">Excluir</button>
+                                        <button className="button-excluir" onClick={(e) => handleDelete(e, card.id)}>Excluir</button>
                                     </div>
                                 </div>
                             </div>
