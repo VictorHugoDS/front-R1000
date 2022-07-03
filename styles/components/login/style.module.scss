@@ -1,0 +1,43 @@
+@import 'styles/var';
+
+.paper{
+  display: 'flex';
+  flex-direction: 'column';
+align-items: 'center';
+
+}
+.login{
+  background-color: $c-lightBlue;
+  max-width: 500px;
+  width: 70%;
+  padding: 20px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  text-align: center;
+  border-radius: 40px 40px 40px 40px;
+}
+.title{
+  font-family: 'Inter';
+  font-style: normal;
+  color: $c-blue;
+}
+
+
+.form{
+  width: '100%';
+  color: $c-lightBlue;
+  background-color: $c-white;
+}
+.control{
+  color: $c-blue;
+}
+
+.submit{
+  font-family: 'Inter';
+  font-style: normal;
+  width: 50%;
+  text-align: center;
+
+}

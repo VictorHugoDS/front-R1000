@@ -1,9 +1,11 @@
 import Layout from '../components/layout';
+import SignIn from './login';
+
 
 export default function Home() {
   return (
     <Layout>
-      olá munbdo
+      <SignIn></SignIn>
     </Layout>
   )
 }
