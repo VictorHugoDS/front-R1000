@@ -6,22 +6,22 @@ export default function menu() {
   // o valor (lado direito) é o link
 
   const itensMenu = {
-    Evento_R100:'Homeeee',
-    Home:'',
+    Evento_R100: 'Homeeee',
+    Home: '',
+    Eventos: '',
   }
 
 
-    return (
+  return (
     <div className={style.menu}>
-        {Object.keys(itensMenu).map((key)=>{
-          return (
-            <li className={style.line} key={key}>
-              {/*Alterar Href no futuro*/ }
-              <a href={`/#`} className={style.link}>{key}</a>
-            </li>
-          )
-        })}
-      </div>
-    )
-  }
-  
+      {Object.keys(itensMenu).map((key) => {
+        return (
+          <li className={style.line} key={key}>
+            {/*Alterar Href no futuro*/}
+            <a href={`/${key}`} className={style.link}>{key}</a>
+          </li>
+        )
+      })}
+    </div>
+  )
+}
