@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import style from '../styles/components/login/style.module.scss';
 
-export default function SignIn() {
+export default function login() {
 
     return (
         <Container component="main" maxWidth="xs">

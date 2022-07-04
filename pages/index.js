@@ -5,7 +5,7 @@ import SignIn from './login';
 export default function Home() {
   return (
     <Layout>
-      <SignIn></SignIn>
+      <login></login>
     </Layout>
   )
 }
