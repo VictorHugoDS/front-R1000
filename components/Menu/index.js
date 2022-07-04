@@ -1,24 +1,28 @@
 import style from '../../styles/components/menu/style.module.scss';
+import { useRouter } from 'next/router'
 
 export default function menu() {
 
-  // a Key (lado esquerdo) é oq irá aparecer no menu
-  // o valor (lado direito) é o link
+  // o valor na posição 0 é o que irá aparecer no menu
+  // o valor na posição 1 é o link que ele irá seguir ao ser clicado
+  const router = useRouter()
 
-  const itensMenu = {
-    Evento_R100:'Homeeee',
-    Home:'',
-  }
-
+  const itensMenu = [
+    ['Evento - R1000','/'],
+    ['Adicionar','/efd/adicionar'],
+  ]
 
     return (
     <div className={style.menu}>
-        {Object.keys(itensMenu).map((key)=>{
-          return (
-            <li className={style.line} key={key}>
-              {/*Alterar Href no futuro*/ }
-              <a href={`/#`} className={style.link}>{key}</a>
-            </li>
+        {itensMenu.map((value)=>{
+          return(
+            <li className={style.line} key={value[0]}>
+            <button
+              onClick={()=>{router.push(value[1])}}
+              className={style.link}>
+                {value[0]}
+            </button>
+          </li>
           )
         })}
       </div>
