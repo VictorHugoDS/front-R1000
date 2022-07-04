@@ -1,12 +1,8 @@
-<<<<<<< HEAD
-import Layout from '../components/layout';
-import SignIn from './login';
 
-=======
 import Button from '@material-ui/core/Button';
 import { useState } from 'react';
 import Modal from '../components/modalsoftwarehouse';
->>>>>>> main
+import Login from '../components/login';
 
 export default function Home() {
 
@@ -18,11 +14,6 @@ export default function Home() {
   
 
   return (
-<<<<<<< HEAD
-    <Layout>
-      <login></login>
-    </Layout>
-=======
     <>
         {/*Necessário se não bugava a página */}
         {open && ( <Modal open={open} handleClose={handleClose}setData={xxx}/> )}
@@ -32,7 +23,8 @@ export default function Home() {
         }}>
           Primary
         </Button>
+
+        <Login></Login>
     </>
->>>>>>> main
   )
 }
