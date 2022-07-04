@@ -3,23 +3,37 @@
 .modalTitle {
     color: $c-blue;
     text-align: center;
-    background-color: green;
+    // background-color: green;
     // padding: 15px 20% 20px 20%;
+    padding-top: 1px;
     font-size: x-large;
     width: 500px;
 }
 
 .input {
-    margin: 20px;
-    color: red;
-    background-color: yellow;
-}
-
-.form  > *{
-    // display: ;
-    margin: 30px 0;
-    background-color: red;
-    width: 40%;
+    margin:1px 0 0 0;
+    width:12rem;
+    text-align:left;
+    padding: 0 1rem 0 1rem;
+    // border: 1px solid gray;
+    display:inline-block;   
 
 }
 
+.input:first-child{
+    width:12rem;
+    margin-right: 5px;
+}
+
+.title{
+    font-style: normal;
+    color: $c-blue;
+  }
+
+.inputFull {
+    width:93%;
+    text-align:left;
+    padding: 0 1rem;
+
+
+}
