@@ -1,6 +1,6 @@
 import style from '../../styles/components/rodape/style.module.scss';
 
-export default function menu() {
+export default function rodape() {
 
     return (
     <footer className={style.footer}>
