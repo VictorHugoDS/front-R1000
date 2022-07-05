@@ -9,7 +9,7 @@ import style from '../../../styles/components/efd/adicionar/style.module.scss';
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
-import { Button } from '@material-ui/core';
+import SelectInput from '@material-ui/core/Select/SelectInput';
 
 export default function Home() {
 
@@ -18,16 +18,23 @@ export default function Home() {
     setOpen(false)
   }
 
-  const [age, setAge] = useState('');
-
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
 
   const { register, handleSubmit,getValues } = useForm();
 
-  const [inicioValidade, setInicioValidade] = useState(new Date());
-  const [fimValidade, setFimValidade] = useState(new Date());
+  const [inicioValidade, setInicioValidade] = useState();
+  const [fimValidade, setFimValidade] = useState();
+
+  const [classificacao, setClassificacao] = useState('');
+  const [pessoa, setPessoa] = useState('');
+
+  const handleChangeClassificacao = (event) => {
+    setClassificacao(event.target.value);
+  };
+
+  const handleChangePessoa = (event) => {
+    setPessoa(event.target.value);
+  };
+
 
   const xxx =(eee) =>{console.log(eee)}
   const incricao = null
@@ -64,6 +71,7 @@ export default function Home() {
               onChange={(date) => setInicioValidade(date)}
               dateFormat="dd/MM/yyyy"
               className={style.calendar}
+              placeholderText="dd/mm/yyyy"
             />
           </div>
           <div className={style.inputDivided}>
@@ -73,17 +81,56 @@ export default function Home() {
               onChange={(date) => setFimValidade(date)}
               dateFormat="dd/MM/yyyy"
               className={style.calendar}
+              placeholderText="dd/mm/yyyy"
             />
           </div>
 
         </Container>
 
+
         <Container maxWidth="sm" className={style.conteiner}>
           <Typography  variant="h5" className={style.title} >
             Informações do Contribuinte
           </Typography>
-          <div className={style.buttonSW}>
-            <Button variant="contained" onClick={()=>{setOpen(true)}}>Text</Button>
+          <div className={style.inputDivided}>
+            <h4 className={style.subtitulo}>Classificação do Contribuinte</h4>
+            <Select
+              labelId="classificacao"
+              id="classificacao"
+              label="Selecione"
+              value={classificacao}
+              onChange={handleChangeClassificacao}
+              variant='standard'
+              className={style.select}
+              displayEmpty   
+            >
+              <MenuItem value="" disabled>
+              Selecione
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
+          </div>
+          <div className={style.inputDivided}>
+            <h4 className={style.subtitulo}>Situação da Pessoa Jurídica</h4>
+            <Select
+              labelId="pessoa"
+              id="pessoa"
+              label="Selecione"
+              value={pessoa}
+              onChange={handleChangePessoa}
+              variant='standard'
+              className={style.select}
+              displayEmpty   
+            >
+              <MenuItem value="" disabled>
+                Selecione
+              </MenuItem>
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
           </div>
         </Container>
 
@@ -91,19 +138,12 @@ export default function Home() {
           <Typography  variant="h5" className={style.title} >
             Software House
           </Typography>
-          <h4 className={style.subtitulo}>Classificação do Contribuinte</h4>
-          <Select
-            labelId="demo-simple-select-label"
-            id="demo-simple-select"
-            value={age}
-            label="Age"
-            onChange={handleChange}
-            variant='standard'
-          >
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <div className={style.buttonSW}>
+            <button variant="contained" onClick={()=>{setOpen(true)}}
+            className={style.button}
+            label='text'
+            >Incluir Software House</button>
+          </div>
         </Container>
         <br/>
 

@@ -51,15 +51,22 @@
 
 .calendar {
   height: 25px;
-  border-radius: 3px;
-  border-width: 1px;
+  width: 80%;
+  border-width: 2px;
   text-align: center;
   font-size: medium;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-color:black ;
+  border-style: solid;
+  background-color:$c-gray;
+  margin-top: 7px;
 }
 .calendar:focus {
   border-color: $c-blue;
-  border-width: 2px;
 }
+
 
 .buttonSW{
   padding: 5px;
@@ -67,4 +74,29 @@
   padding-top: 0;
   // background-color: red;
   align-items: center;
+}
+
+.button{
+  font-size: large;
+  background-color: white;
+  border-color: $c-gray;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.button:hover{
+  background-color:  $c-blue;
+  color: white;
+  transition-duration: 0.5s;
+}
+
+.button:active{
+  background-color:  $c-lightBlue;
+  color: $c-blue;
+}
+
+.select {
+  margin-top: 10px;
+  width: 80%;
 }
