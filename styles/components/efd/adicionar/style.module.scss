@@ -1,0 +1,157 @@
+@import 'styles/var';
+
+.conteiner {
+  margin-top: 10px;
+  background-color: $c-gray;
+  text-align: center;
+}
+
+
+.titlePage {
+  text-align: center;
+  padding: 10px;
+  color: $c-blue;
+}
+
+.title{
+  text-align: center;
+  padding: 10px;
+  color: $c-blue;
+  padding-bottom: 5%;
+}
+
+.subtitulo{
+  font-style: normal;
+  color: $c-blue;
+  padding: 0px;
+  margin: 0px;
+  text-align: center;
+}
+
+.inputSingleLine {
+  margin:1px 0 0 0;
+  width:20rem;
+  height: 100%;
+  text-align:left;
+  padding: 0 1rem 0 1rem;
+  display:inline-block;  
+  align-items: center; 
+}
+
+.inputDivided {
+  margin:1px 0 0 0;
+  width:16rem;
+  height: 100%;
+  text-align:center;
+  padding: 0 1rem;
+  display:inline-block;   
+  // background-color: red;
+  padding-bottom: 1rem;
+}
+
+.calendar {
+  height: 25px;
+  width: 80%;
+  border-width: 2px;
+  text-align: center;
+  font-size: medium;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+  border-color:black ;
+  border-style: solid;
+  background-color:$c-gray;
+  margin-top: 7px;
+}
+.calendar:focus {
+  border-color: $c-blue;
+}
+
+
+.buttonSW{
+  padding: 5px;
+  padding-bottom: 15px;
+  padding-top: 0;
+  // background-color: red;
+  align-items: center;
+}
+
+.button{
+  font-size: large;
+  background-color: white;
+  border-color: $c-gray;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.button:hover{
+  background-color:  $c-blue;
+  color: white;
+  transition-duration: 0.5s;
+}
+
+.button:active{
+  background-color:  $c-lightBlue;
+  color: $c-blue;
+}
+
+.select {
+  margin-top: 10px;
+  width: 80%;
+}
+
+.textInput{
+  text-align: center;
+  background-color: $c-gray;
+}
+
+.conteinerButton{
+  margin-top: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.buttonOk{
+  font-size: large;
+  background-color: $c-lightBlue;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.buttonOk:hover{
+  background-color: rgb(40, 166, 40);
+  color: $c-white;
+  transition-duration: 0.5s;
+}
+
+.buttonOk:active{
+  background-color:  $c-blue;
+  color: $c-white;
+}
+
+.buttonNotOk{
+  font-size: large;
+  background-color: $c-red;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.buttonNotOk:hover{
+  background-color:  orange;
+  color: white;
+  transition-duration: 0.5s;
+}
+
+.buttonNotOk:active{
+  background-color:  rgb(250, 80, 80);
+  color: $c-blue;
+}
+
+.input{
+  background-color:none;
+}
