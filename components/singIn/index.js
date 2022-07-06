@@ -4,13 +4,24 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
 import Container from '@material-ui/core/Container';
 import style from '../../styles/components/login/style.module.scss';
+import { useRouter } from 'next/router'
+import { useForm } from 'react-hook-form';
 
-export default function Login() {
 
-    //const [cpf, setCpf] = useState();
+export default function SingIn() {
+
+    const { register, handleSubmit } = useForm();
+
+    const router = useRouter();
+    const [cpf, setCpf] = useState();
+
+    const onSubmit = () => {
+        router.push("/Eventos")
+    };
+
 
     const cpfValid = (e) =>{
-        var strCPF = e;
+        var strCPF = e.target.value;
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('-', '');
@@ -18,7 +29,7 @@ export default function Login() {
         var Resto;
         var i;
         Soma = 0;
-        if (strCPF == "00000000000") return false;
+        if (strCPF == "00000000000" || strCPF.length > 11) return false;
     
         for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
         Resto = (Soma * 10) % 11;
@@ -41,7 +52,7 @@ export default function Login() {
           <div className={style.paper}>
             <div className={style.login}>
                 <h1 className={style.modalTitle}>Login</h1>
-                <form  >
+                <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         className={style.form}
                         variant="outlined"
@@ -52,8 +63,10 @@ export default function Login() {
                         id="cpf"
                         label="CPF"
                         autoFocus
-                        onChange={(e) =>{cpfValid(e.target.value)}}
+                        {...register("cpf")}
+                        onBlur={(e) =>{setCpf(cpfValid(e))}}
                     />
+                    <p className={style.alerta} >{cpf || "CPF incorreto"}</p>
                     <TextField
                         className={style.form}
                         variant="outlined"
@@ -63,7 +76,8 @@ export default function Login() {
                         name="password"
                         label="senha"
                         type="password"
-                        autoComplete="current-password"
+                        //autoComplete="current-password"
+                        //{...register(password)}
                     />
                     <Button
                         type="submit"
