@@ -9,7 +9,10 @@ import style from '../../../styles/components/efd/adicionar/style.module.scss';
 import DatePicker from "react-datepicker";
 import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
-import SelectInput from '@material-ui/core/Select/SelectInput';
+import Radio from '@material-ui/core/Radio';
+import { TextField } from '@material-ui/core';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 
 export default function Home() {
 
@@ -35,6 +38,8 @@ export default function Home() {
     setPessoa(event.target.value);
   };
 
+  const [softwareHouse,setSoftwareHouse] = useState(null)
+
 
   const xxx =(eee) =>{console.log(eee)}
   const incricao = null
@@ -42,7 +47,14 @@ export default function Home() {
   return (
     <>
       {/*Necessário se não bugava a página */}
-      {open && ( <Modal open={open} handleClose={handleClose}setData={xxx}/> )}
+      {open && ( 
+      <Modal 
+        open={open} 
+        handleClose={handleClose} 
+        setData={setSoftwareHouse}
+        defaultValues={softwareHouse}
+      /> 
+      )}
       
         <CssBaseline />
           <Typography  variant="h4" className={style.titlePage} >
@@ -72,6 +84,7 @@ export default function Home() {
               dateFormat="dd/MM/yyyy"
               className={style.calendar}
               placeholderText="dd/mm/yyyy"
+              maxDate={new Date()}
             />
           </div>
           <div className={style.inputDivided}>
@@ -81,10 +94,11 @@ export default function Home() {
               onChange={(date) => setFimValidade(date)}
               dateFormat="dd/MM/yyyy"
               className={style.calendar}
+              minDate={new Date()}
               placeholderText="dd/mm/yyyy"
             />
           </div>
-
+        <br/><br/>
         </Container>
 
 
@@ -132,6 +146,121 @@ export default function Home() {
               <MenuItem value={30}>Thirty</MenuItem>
             </Select>
           </div>
+          <br/><br/>
+          <div className={style.inputDivided}>
+            <h4 className={style.subtitulo}>Obrigatória a Escrituração Contábil</h4>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="Sim"
+              name="radio-buttons-group"
+              row
+              
+            >
+            <div className={style.inputDivided}>
+              <FormControlLabel  value="Sim" control={
+                <Radio size="small" 
+                  color="default"/>
+              } label="Sim" />
+              <FormControlLabel value="Não" control={
+                <Radio size="small"
+                  color="default" />
+              } label="Não" />
+            </div>
+            </RadioGroup>
+          </div>
+          <div className={style.inputDivided}>
+            <h4 className={style.subtitulo}>Desoneração da Folha pela CPRB</h4>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="Sim"
+              name="radio-buttons-group"
+              row
+              
+            >
+            <div className={style.inputDivided}>
+              <FormControlLabel  value="Sim" control={
+                <Radio size="small" 
+                  color="default"/>
+              } label="Sim" />
+              <FormControlLabel value="Não" control={
+                <Radio size="small"
+                  color="default" />
+              } label="Não" />
+            </div>
+            </RadioGroup>
+          </div>
+          <div className={style.inputDivided}>
+            <h4 className={style.subtitulo}>Acordo Internaciona Para Isenção de Multa</h4>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              defaultValue="Sim"
+              name="radio-buttons-group"
+              row
+              
+            >
+            <div className={style.inputDivided}>
+              <FormControlLabel  value="Sim" control={
+                <Radio size="small" 
+                  color="default"/>
+              } label="Sim" />
+              <FormControlLabel value="Não" control={
+                <Radio size="small"
+                  color="default" />
+              } label="Não" />
+            </div>
+            </RadioGroup>
+          </div>
+        </Container>
+
+        <Container maxWidth="sm" className={style.conteiner}>
+          <Typography  variant="h5" className={style.title} >
+            Informações Para Contato
+          </Typography>
+          <div className={style.inputDivided}>
+            <h4 className={style.title}>Nome</h4>
+            <TextField id="outlined-basic" 
+              placeholder='João da Silva'
+              variant="standard"
+              fullWidth
+              size="small"
+              {...register("nome")}
+            />
+          </div>
+
+          <div className={style.inputDivided}>
+            <h4 className={style.title}>CPF</h4>
+            <TextField id="outlined-basic" 
+              placeholder='000.000.000-00'
+              variant="standard"
+              fullWidth
+              size="small"
+              {...register("cpf")}
+            />
+          </div>
+
+          <div className={style.inputDivided}>
+            <h4 className={style.title}>Telefone</h4>
+            <TextField id="outlined-basic" 
+              placeholder='(00) 000000000'
+              variant="standard"
+              fullWidth
+              size="small"
+              className={style.textInput}
+              {...register("telefone")}
+            />
+          </div>
+
+          <div className={style.inputDivided}>
+            <h4 className={style.title}>E-mail</h4>
+            <TextField id="outlined-basic" 
+              placeholder='exemplo@email.com'
+              variant="standard"
+              fullWidth
+              size="small"
+              {...register("email")}
+            />
+          </div>
+          
         </Container>
 
         <Container maxWidth="sm" className={style.conteiner}>
@@ -144,9 +273,36 @@ export default function Home() {
             label='text'
             >Incluir Software House</button>
           </div>
+          
+        </Container>
+
+        <Container maxWidth="sm" className={style.conteiner}>
+          <Typography  variant="h5" className={style.title} >
+            Assinatura
+          </Typography>
+          <div className={style.buttonSW}>
+            <button variant="contained"
+            className={style.button}
+            label='text'
+            >Assinar Documento</button>
+          </div>
+          
         </Container>
         <br/>
-
+        <Container maxWidth="sm">
+        <div className={style.inputDivided}>
+            <button variant="contained"
+            className={style.buttonOk}
+            label='text'
+            >Confirmar Cadastro</button>
+          </div>          
+          <div className={style.inputDivided}>
+            <button variant="contained"
+            className={style.buttonNotOk}
+            label='text'
+            >Cancelar Cadastro</button>
+          </div>
+        </Container>
     </>
   )
 }

@@ -100,3 +100,54 @@
   margin-top: 10px;
   width: 80%;
 }
+
+.textInput{
+  text-align: center;
+  background-color: $c-gray;
+}
+
+.conteinerButton{
+  margin-top: 10px;
+  background-color: white;
+  text-align: center;
+}
+
+.buttonOk{
+  font-size: large;
+  background-color: $c-lightBlue;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.buttonOk:hover{
+  background-color: rgb(40, 166, 40);
+  color: $c-white;
+  transition-duration: 0.5s;
+}
+
+.buttonOk:active{
+  background-color:  $c-blue;
+  color: $c-white;
+}
+
+.buttonNotOk{
+  font-size: large;
+  background-color: $c-red;
+  border-color: white;
+  border-style: solid;
+  border-radius: 10px;
+  padding: 7px;
+}
+
+.buttonNotOk:hover{
+  background-color:  orange;
+  color: white;
+  transition-duration: 0.5s;
+}
+
+.buttonNotOk:active{
+  background-color:  rgb(250, 80, 80);
+  color: $c-blue;
+}
