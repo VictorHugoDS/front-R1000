@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import style from '../../styles/components/modal/style.module.scss';
 import { TextField } from '@material-ui/core';
-import { useForm } from "react-hook-form";
+import { set, useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 
 export default function softwareHause({open,handleClose,setData,defaultValues}) {
@@ -14,10 +14,9 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
     const Transition = React.forwardRef(function Transition(props, ref) {
         return <Slide direction="up" ref={ref} {...props} />;
       });
-
-    const { register, handleSubmit,getValues } = useForm();
-    const {cnpj,telefone,razao,contato,email} = defaultValues
-
+      
+    const { register, handleSubmit,getValues,setValue} = useForm();
+  
     const onSubmit = (data) =>{
       const resp = {...data,exited:false}
       setData(resp)
@@ -28,6 +27,17 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
       setData({...getValues(),exited:true})
       handleClose()
     }
+
+    useEffect((()=>{
+      if(open && defaultValues){
+        const {cnpj,telefone,razao,contato,email} = defaultValues
+        setValue('cnpj',cnpj)
+        setValue('telefone',telefone)
+        setValue('razao',razao)
+        setValue('contato',contato)
+        setValue('email',email)
+      }
+    }),[open])
 
     return (
         <>
@@ -41,8 +51,7 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
         >
 
         <strong className={style.modalTitle}>
-            <h3>Informações da Software House
-              </h3>
+            <h3>Informações da Software House</h3>
         </strong>
         <DialogContent>
           <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -54,7 +63,6 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
                 placeholder='00.000.000/0000-00'
                 fullWidth
                 size="small"
-                defaultValue={cnpj && null}
                 {...register("cnpj")}
               />
             </div>
@@ -66,7 +74,6 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
                 variant="outlined" 
                 fullWidth
                 size="small"
-                defaultValue={telefone && null}
                 {...register("telefone")}
               />
             </div>
@@ -80,7 +87,6 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
                   fullWidth
                   size="small"
                   placeholder='exemplo industrias ltda.'
-                  defaultValue={razao && null}
                   {...register("razao")}
                 />
             </div>
@@ -93,7 +99,6 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
                   variant="outlined" 
                   fullWidth
                   size="small"
-                  defaultValue={contato && null}
                   {...register("contato")}
                 />
             </div>
@@ -106,7 +111,6 @@ export default function softwareHause({open,handleClose,setData,defaultValues}) 
                   variant="outlined" 
                   fullWidth
                   size="small"
-                  defaultValue={email && null}
                   {...register("email")}
                 />
             </div>

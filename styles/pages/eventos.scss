@@ -1,0 +1,139 @@
+@import 'styles/var';
+
+.container-listar-eventos{
+    display: grid;
+    justify-items: center;
+    justify-content: center;
+    grid-auto-columns: 95%;
+    padding-bottom: 100px;
+
+    .titulo-principal{
+        text-align: center;
+        font-family: "Inter";
+    }
+
+    .content-eventos{
+        background-color: #E1E7F2;
+        padding: 40px;
+        border-radius: 30px;
+        min-width: 648px;
+        width: 70%;
+        display: grid;
+        row-gap: 20px;
+
+        .titulo-eventos{
+            color:$c-blue;
+            text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            text-align: center;
+            font-family: "Inter";
+        }
+
+        .card-content{
+            background-color: $c-white;
+            padding: 20px;
+            border-radius: 30px;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+            .container-num-recibo{
+                display: flex;
+                justify-content: space-between;
+
+                p{
+                    font:500 28px "Inter";
+                    color: $c-blue;
+                    margin: 10px 0px;
+                    width: 100%;
+                    text-align: center;
+                }
+
+                a{
+                    display: flex;
+                    align-items: center;
+                    color:$c-blue;
+                    font:500 18px "Inter";
+                }
+            }
+
+            .container-validade{
+                p{
+                    text-align: center;
+                    width: 27vh;
+                    color: $c-blue;
+                    font:500 18px "Inter";
+                    margin-bottom: 0px;
+                }
+            }
+
+            .container-data--buttons{
+                display: grid;
+                gap: 5%;
+                justify-content: space-between;
+                grid-template-columns: repeat(2,auto);
+
+                div{
+                    display: flex;
+                    gap:20px;
+                }
+
+                p{
+                    color:$c-blue;
+                    font:500 18px "Inter";
+                }
+   
+                .button-edit{
+                    height: 40px;
+                    width: 150px;
+                    border-radius: 16px;
+                    font:700 18px "Inter";
+                    cursor: pointer;
+                    background-color: #B4D6FF;
+                    border: 2px solid #3290FF;
+                    color:#3290FF;
+
+                    &:hover{
+                        background-color: rgb(50, 144, 255, 0.5);
+                    }
+                }
+
+                .button-excluir{
+                    height: 40px;
+                    width: 150px;
+                    border-radius: 16px;
+                    font:700 18px "Inter";
+                    cursor: pointer;
+                    background-color: #FFB4B4;
+                    color:#EF0A0A;
+                    border:2px solid rgb(239,10,10);
+
+                    &:hover{
+                        background-color: rgb(239,10,10,0.5);
+                    }
+                }
+            }   
+        }
+
+        .container-button-criar-evento{
+            display: flex;
+            padding-top: 30px;
+            justify-content: center;
+
+            button{
+                width: 160px;
+                height: 42px;
+                background-color: $c-white;
+                font:700 18px "Inter";
+                cursor: pointer;
+                box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+                border: none;
+                border-radius: 16px;
+
+                &:hover{
+                    background-color: rgba(255, 255, 255, 0.5);
+                }
+            }
+        }
+
+
+    }
+
+}
