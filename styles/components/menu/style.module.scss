@@ -23,19 +23,22 @@
 .link{
   color: $c-white;
   text-decoration: none;
-  margin:1rem;
-
+  margin:0.5rem;
+  border: 0px;
+  background-color: $c-blue;
+  font-size: large;
+  cursor: pointer;
 }
 
 .link:hover{
-  color: rgb(136, 136, 136);
-  text-decoration: underline;
-  margin:1rem;
-
+  color: rgb(225, 225, 225);
+  border-style: solid;
+  border-width: 0 0 1px 0;
+  border-color:  $c-gray ;
+  margin-bottom: 0px;
 }
 
 .link:active {
   color: $c-gray;
-  // margin:1rem;
-  // background-color: red;
 }
+
