@@ -5,27 +5,27 @@ export default function menu() {
 
   // o valor na posição 0 é o que irá aparecer no menu
   // o valor na posição 1 é o link que ele irá seguir ao ser clicado
-  const router = useRouter()
+  const router = useRouter();
 
   const itensMenu = [
-    ['Evento - R1000','/'],
-    ['Adicionar','/efd/adicionar'],
+    ['Evento - R1000', '/Eventos'],
+    ['Adicionar', '/efd/adicionar'],
   ]
 
-    return (
+  return (
     <div className={style.menu}>
-        {itensMenu.map((value)=>{
-          return(
-            <li className={style.line} key={value[0]}>
+      {itensMenu.map((value) => {
+        return (
+          <li className={style.line} key={value[0]}>
             <button
-              onClick={()=>{router.push(value[1])}}
+              onClick={() => { router.push(value[1]) }}
               className={style.link}>
-                {value[0]}
+              {value[0]}
             </button>
           </li>
-          )
-        })}
-      </div>
-    )
-  }
-  
+        )
+      })}
+    </div>
+  )
+}
+
