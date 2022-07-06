@@ -1,6 +1,6 @@
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Container from '@material-ui/core/Container';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Modal from '../../../components/modalsoftwarehouse';
 import InformacoesContato from '../../../components/efd/informacoescontrato';
@@ -17,18 +17,63 @@ export default function Home() {
     setOpen(false)
   }
 
-  const { register, handleSubmit,getValues } = useForm();
+  const asyncFuncToLoadData = async() =>(
+    {
+      inscricao:'21.321.321/4321-12',
+      acordo: "nao",
+      classificacaoContribuinte: 20,
+      desoneracao: "nao",
+      escrituracao: "sim",
+      informacoesContribuinte:{
+        cpf: "627.338.830-03",
+        email: "Monze.g@hotmail",
+        nome: "Monze Golla Vaxo",
+        telefone: "(21) 67676-767",
+      },
+      situacaoPessoaJuridica: 30,
+      softwareHouse:{
+        cnpj: "80.176.343/0001-40",
+        contato: "Pueir Siesulas Yadbhi",
+        email: "Pueir@gmail.com",
+        razao: "PueirComercios LTDA.",
+        telefone: "(21) 98765-542",
+      }
+    }
+  )
+  
+  const { register, handleSubmit,getValues,setValue } = useForm();
+  const [resp,setResp] = useState();
+
+  useEffect(()=>{
+    asyncFuncToLoadData().then((e)=>{
+      setResp(e)
+      setClassificacao(e?.classificacaoContribuinte ?? '')
+      setPessoa(e?.situacaoPessoaJuridica ?? '')
+      setRadioOptions({
+        escrituracao:e.escrituracao,
+        desoneracao:e.desoneracao,
+        acordo:e.acordo,
+      })
+      setValue('nome',e.informacoesContribuinte.nome)
+      setValue('cpf',e.informacoesContribuinte.cpf)
+      setValue('telefone',e.informacoesContribuinte.telefone)
+      setValue('email',e.informacoesContribuinte.email)
+
+    });
+    
+  },[])
+
   const [inicioValidade, setInicioValidade] = useState();
   const [fimValidade, setFimValidade] = useState();
   const [classificacao, setClassificacao] = useState('');
-  const [pessoa, setPessoa] = useState('');
+  const [pessoa, setPessoa] = useState( '');
   const [softwareHouse,setSoftwareHouse] = useState(null);
   const [radioOptions,setRadioOptions] = useState(null);
 
   const onSubmit = (data) =>{
     const resp ={
-      inicioValidade,
-      fimValidade,
+      inicioValidade:inicioValidade.toJSON(),
+      fimValidade:fimValidade.toJSON(),
       classificacaoContribuinte:classificacao,
       situacaoPessoaJuridica:pessoa,
       ...radioOptions,
@@ -44,24 +89,23 @@ export default function Home() {
 
 
 
-  const incricao = null
+  const incricao = resp?.inscricao || '00.000.000/0000-00'
 
   return (
     <>
-      {/*Necessário se não bugava a página */}
       {open && ( 
       <Modal 
         open={open} 
         handleClose={handleClose} 
         setData={setSoftwareHouse}
-        defaultValues={softwareHouse}
+        defaultValues={resp.softwareHouse}
       /> 
       )}
       
         <CssBaseline />
         <Typography  variant="h4" className={style.titlePage} >
           <strong>
-          Cadastro de Contribuinte
+          EFD-REINF
           </strong>
         </Typography>
         <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
@@ -99,19 +143,6 @@ export default function Home() {
             
           </Container>
 
-          <Container maxWidth="sm" className={style.conteiner}>
-            <Typography  variant="h5" className={style.title} >
-              Assinatura
-            </Typography>
-            <div className={style.buttonSW}>
-              <button variant="contained"
-              className={style.button}
-              label='text'
-              type='button'
-              >Assinar Documento</button>
-            </div>
-            
-          </Container>
           <br/>
           <Container maxWidth="sm">
           <div className={style.inputDivided}>
@@ -119,13 +150,13 @@ export default function Home() {
               className={style.buttonOk}
               label='text'
               type="submit"
-              >Confirmar Cadastro</button>
+              >Confirmar Edição</button>
             </div>          
             <div className={style.inputDivided}>
               <button variant="contained"
               className={style.buttonNotOk}
               label='text'
-              >Cancelar Cadastro</button>
+              >Cancelar Edição</button>
             </div>
           </Container>
       </form>
