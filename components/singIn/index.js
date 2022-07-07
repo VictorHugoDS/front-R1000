@@ -16,20 +16,31 @@ export default function SingIn() {
     const [cpf, setCpf] = useState();
 
     const onSubmit = () => {
-        router.push("/Eventos")
+        if(cpf){
+            router.push("/Eventos")
+        }
     };
 
 
     const cpfValid = (e) =>{
         var strCPF = e.target.value;
+        
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('-', '');
         var Soma;
         var Resto;
         var i;
+        var repetidos = 0;
         Soma = 0;
-        if (strCPF == "00000000000" || strCPF.length > 11) return false;
+
+        for (i=0; i<10; i++){
+            if(strCPF[i] === strCPF[i+1]){
+                repetidos +=1;
+            }
+        }	
+
+        if (repetidos == 10 || strCPF.length > 11) return false;
     
         for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
         Resto = (Soma * 10) % 11;
@@ -50,8 +61,11 @@ export default function SingIn() {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={style.paper}>
-            <div className={style.login}>
                 <h1 className={style.modalTitle}>Login</h1>
+            <div className={style.login}>
+
+                <h2>CPF</h2>
+                
                 <form onSubmit={handleSubmit(onSubmit)}>
                     <TextField
                         className={style.form}
@@ -59,22 +73,21 @@ export default function SingIn() {
                         margin="normal"
                         required
                         fullWidth
-                        placeholder='000.000.000-00'
-                        id="cpf"
-                        label="CPF"
+                        placeholder={'000.000.000-00'}
                         autoFocus
                         {...register("cpf")}
                         onBlur={(e) =>{setCpf(cpfValid(e))}}
                     />
                     <p className={style.alerta} >{cpf || "CPF incorreto"}</p>
+                    <h2>Senha</h2>
                     <TextField
                         className={style.form}
                         variant="outlined"
                         margin="normal"
                         //required
                         fullWidth
+                        placeholder='Senha'
                         name="password"
-                        label="senha"
                         type="password"
                         //autoComplete="current-password"
                         //{...register(password)}
