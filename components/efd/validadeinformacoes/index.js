@@ -2,6 +2,11 @@ import DatePicker from "react-datepicker";
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import style from '../../../styles/components/efd/adicionar/style.module.scss';
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import { useState } from "react";
+import { TextField } from '@material-ui/core';
 
 
 export default function Validade({
@@ -11,22 +16,63 @@ export default function Validade({
     fimValidade,
     setFimValidade,
 }) {
+
+  const [resposta,setResposta] = useState('cnpj')
   
 
     return(
         <Container maxWidth="sm" className={style.conteiner}>
         <Typography  variant="h5" className={style.title} >
-          Periodo de Validade das informações
+          Selecione o tipo de Inscrição
         </Typography>
-
-        <div className={style.inputSingleLine}>
-          <h4 className={style.subtitulo}>Número de Inscrição</h4>
-          <Typography  variant="body1" className={style.title} >
-            {incricao || '00.000.000/0000-00'}
-          </Typography>
+        
+        <div className={style.inputDivided}>
+          <h4 className={style.subtitulo}>Selecione tipo de Inscrição</h4>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="cnpj"
+            name="radio-buttons-group"
+            row
+            onChange={(e)=>{setResposta(e.target.value)}}
+          >
+          <div className={style.inputDivided}>
+            <FormControlLabel  value="cpf" control={
+              <Radio size="small" 
+                color="default"/>
+            } label="CPF" />
+            <FormControlLabel value="cnpj" control={
+              <Radio size="small"
+                color="default" />
+            } label="CNPJ" />
+          </div>
+          </RadioGroup>
         </div>
+          <div className={style.inputSingleLine}>
+           {resposta === 'cpf' ? (
+            <>
+            <h4 className={style.subtitulo}>Número Inscrição(CPF)</h4>
+              <TextField id="outlined-basic" 
+                placeholder='000.000.000-00'
+                variant="standard"
+                fullWidth
+                size="small"
+            />
+            </>
+           ) : (
+            <>
+              <h4 className={style.subtitulo}>Número Inscrição(CNPJ)</h4>
+              <TextField id="outlined-basic" 
+                placeholder='00.000.000/0000-00'
+                variant="standard"
+                fullWidth
+                size="small"
+              />
+            </>
+           )}
+          </div>
 
-        <br/>
+          
+        <br/><br/><br/>
 
         <div className={style.inputDivided}>
           <h4 className={style.subtitulo}>Início da validade</h4>

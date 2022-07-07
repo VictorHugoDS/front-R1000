@@ -8,6 +8,7 @@ export default function menu() {
   const router = useRouter();
 
   const itensMenu = [
+    ['Home','/'],
     ['Evento - R1000', '/Eventos'],
     ['Adicionar', '/efd/adicionar'],
   ]
