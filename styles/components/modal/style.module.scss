@@ -37,3 +37,32 @@
 
 
 }
+
+.buttonConfirm{
+    height: 35px;
+    width: 130px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color:#3290FF;
+    border: none;
+    color:$c-white;
+
+    &:hover{
+        background-color: rgb(50, 144, 255, 0.8);
+    }
+}
+
+.buttonCancel{
+    height: 35px;
+    width: 130px;
+    border-radius: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    background-color: #EF0A0A;
+    color:$c-white;
+    border:none;
+    
+}
