@@ -12,30 +12,30 @@ import Validade from '../../../components/efd/validadeinformacoes';
 
 export default function Home() {
 
-  const [open,setOpen] = useState(false)
-  const handleClose = () =>{
+  const [open, setOpen] = useState(false)
+  const handleClose = () => {
     setOpen(false)
   }
 
-  const { register, handleSubmit,getValues } = useForm();
+  const { register, handleSubmit, getValues } = useForm();
   const [inicioValidade, setInicioValidade] = useState();
   const [fimValidade, setFimValidade] = useState();
   const [classificacao, setClassificacao] = useState('');
   const [pessoa, setPessoa] = useState('');
-  const [softwareHouse,setSoftwareHouse] = useState(null);
-  const [radioOptions,setRadioOptions] = useState(null);
+  const [softwareHouse, setSoftwareHouse] = useState(null);
+  const [radioOptions, setRadioOptions] = useState(null);
 
-  const onSubmit = (data) =>{
-    const resp ={
+  const onSubmit = (data) => {
+    const resp = {
       inicioValidade,
       fimValidade,
-      classificacaoContribuinte:classificacao,
-      situacaoPessoaJuridica:pessoa,
+      classificacaoContribuinte: classificacao,
+      situacaoPessoaJuridica: pessoa,
       ...radioOptions,
-      softwareHouse:{
+      softwareHouse: {
         ...softwareHouse
       },
-      informacoesContribuinte:{
+      informacoesContribuinte: {
         ...getValues()
       },
     }
@@ -49,85 +49,87 @@ export default function Home() {
   return (
     <>
       {/*Necessário se não bugava a página */}
-      {open && ( 
-      <Modal 
-        open={open} 
-        handleClose={handleClose} 
-        setData={setSoftwareHouse}
-        defaultValues={softwareHouse}
-      /> 
+      {open && (
+        <Modal
+          open={open}
+          handleClose={handleClose}
+          setData={setSoftwareHouse}
+          defaultValues={softwareHouse}
+        />
       )}
-      
-        <CssBaseline />
-        <Typography  variant="h4" className={style.titlePage} >
-          <strong>
+
+      <CssBaseline />
+      <Typography variant="h4" className={style.titlePage} >
+        <strong>
           Cadastro de Contribuinte
-          </strong>
-        </Typography>
-        <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
-          <Validade
-            incricao={incricao}
-            inicioValidade={inicioValidade}
-            setInicioValidade={setInicioValidade}
-            fimValidade={fimValidade}
-            setFimValidade={setFimValidade}
-          />
+        </strong>
+      </Typography>
+      <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
+        <Validade
+          incricao={incricao}
+          inicioValidade={inicioValidade}
+          setInicioValidade={setInicioValidade}
+          fimValidade={fimValidade}
+          setFimValidade={setFimValidade}
+        />
 
-          <InformacoesContribuinte 
-            classificacao={classificacao}
-            setClassificacao={setClassificacao}
-            pessoa={pessoa}
-            setPessoa={setPessoa}
-            setRadioOptions={setRadioOptions}
-          />
+        <InformacoesContribuinte
+          classificacao={classificacao}
+          setClassificacao={setClassificacao}
+          pessoa={pessoa}
+          setPessoa={setPessoa}
+          setRadioOptions={setRadioOptions}
+        />
 
-          <InformacoesContato
-            register={register}
-          />
+        <InformacoesContato
+          register={register}
+        />
 
-          <Container maxWidth="sm" className={style.conteiner}>
-            <Typography  variant="h5" className={style.title} >
-              Software House
-            </Typography>
-            <div className={style.buttonSW}>
-              <button variant="contained" onClick={()=>{setOpen(true)}}
-                className={style.button}
-                label='text'
-                type='button'
-              >Incluir Software House</button>
-            </div>
-            
-          </Container>
-
-          <Container maxWidth="sm" className={style.conteiner}>
-            <Typography  variant="h5" className={style.title} >
-              Assinatura
-            </Typography>
-            <div className={style.buttonSW}>
-              <button variant="contained"
+        <Container maxWidth="sm" className={style.conteiner}>
+          <Typography variant="h5" className={style.title} >
+            Software House
+          </Typography>
+          <div className={style.buttonSW}>
+            <button variant="contained" onClick={() => { setOpen(true) }}
               className={style.button}
               label='text'
               type='button'
-              >Assinar Documento</button>
-            </div>
-            
-          </Container>
-          <br/>
-          <Container maxWidth="sm">
-          <div className={style.inputDivided}>
-              <button variant="contained"
-              className={style.buttonOk}
+            >Incluir Software House</button>
+          </div>
+
+        </Container>
+
+        <Container maxWidth="sm" className={style.conteiner}>
+          <Typography variant="h5" className={style.title} >
+            Assinatura
+          </Typography>
+          <div className={style.buttonSW}>
+            <button variant="contained"
+              className={style.button}
               label='text'
-              type="submit"
-              >Confirmar Cadastro</button>
-            </div>          
-            <div className={style.inputDivided}>
-              <button variant="contained"
-              className={style.buttonNotOk}
-              label='text'
-              >Cancelar Cadastro</button>
-            </div>
-          </Container>
+              type='button'
+            >Assinar Documento</button>
+          </div>
+
+        </Container>
+        <br />
+        <Container maxWidth="sm" style={{
+          display: "flex",
+          justifyContent: "space-between",
+          padding: "0px",
+          paddingBottom: "20px",
+        }}>
+          <button
+            className={style.buttonNotOk}
+            label='text'
+          >Cancelar</button>
+
+          <button variant="contained"
+            className={style.buttonOk}
+            label='text'
+            type="submit"
+          >Confirmar</button>
+        </Container>
       </form>
     </>
   )

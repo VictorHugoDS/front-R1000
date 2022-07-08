@@ -4,6 +4,7 @@
   margin-top: 10px;
   background-color: $c-gray;
   text-align: center;
+  border-radius: 16px;
 }
 
 
@@ -81,8 +82,9 @@
   background-color: white;
   border-color: $c-gray;
   border-style: solid;
-  border-radius: 10px;
+  border-radius: 16px;
   padding: 7px;
+  cursor:pointer;
 }
 
 .button:hover{
@@ -113,16 +115,19 @@
 }
 
 .buttonOk{
-  font-size: large;
-  background-color: $c-lightBlue;
-  border-color: white;
-  border-style: solid;
-  border-radius: 10px;
-  padding: 7px;
+  height: 40px;
+  width: 150px;
+  border-radius: 16px;
+   font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color:#3290FF;
+  border: none;
+  color:$c-white;
 }
 
 .buttonOk:hover{
-  background-color: rgb(40, 166, 40);
+  background-color: #2e90ff;
   color: $c-white;
   transition-duration: 0.5s;
 }
@@ -133,23 +138,25 @@
 }
 
 .buttonNotOk{
-  font-size: large;
-  background-color: $c-red;
-  border-color: white;
-  border-style: solid;
-  border-radius: 10px;
-  padding: 7px;
+  height: 40px;
+  width: 150px;
+  border-radius: 16px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  background-color: #EF0A0A;
+  color:$c-white;
+  border:none;
 }
 
 .buttonNotOk:hover{
-  background-color:  orange;
+  background-color:  #f50707;
   color: white;
   transition-duration: 0.5s;
 }
 
 .buttonNotOk:active{
   background-color:  rgb(250, 80, 80);
-  color: $c-blue;
 }
 
 .input{
