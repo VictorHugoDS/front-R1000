@@ -1,5 +1,13 @@
 import moment from "moment"
 import Layout from "../../components/layout";
+import { withStyles, Button } from "@material-ui/core"
+
+export const ButtonCSS = withStyles({
+    root: {
+        backgroundColor: ""
+    }
+
+})(Button);
 
 
 export default function Eventos() {
@@ -46,7 +54,7 @@ export default function Eventos() {
             <h1 className="titulo-principal">EFD REINF</h1>
 
             <div className="content-eventos">
-                <h1 className="titulo-eventos">Eventos enviados</h1>
+                <h1 className="titulo-eventos">Eventos Enviados</h1>
 
                 {cards.map((card, index) => {
                     return (

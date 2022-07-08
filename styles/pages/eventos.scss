@@ -9,14 +9,15 @@
 
     .titulo-principal{
         text-align: center;
-        font-family: "Inter";
+        color:$c-blue;
+        text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     }
 
     .content-eventos{
         background-color: #E1E7F2;
         padding: 40px;
         border-radius: 30px;
-        min-width: 648px;
+        min-width: 710px;
         width: 70%;
         display: grid;
         row-gap: 20px;
@@ -25,7 +26,6 @@
             color:$c-blue;
             text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
             text-align: center;
-            font-family: "Inter";
         }
 
         .card-content{
@@ -39,7 +39,8 @@
                 justify-content: space-between;
 
                 p{
-                    font:500 28px "Inter";
+                    font-size: 32px;
+                    font-weight: 500;
                     color: $c-blue;
                     margin: 10px 0px;
                     width: 100%;
@@ -50,16 +51,18 @@
                     display: flex;
                     align-items: center;
                     color:$c-blue;
-                    font:500 18px "Inter";
+                    font-size: 18px;
+                    font-weight: 500;
                 }
             }
 
             .container-validade{
                 p{
                     text-align: center;
-                    width: 27vh;
+                    width: 34vh;
                     color: $c-blue;
-                    font:500 18px "Inter";
+                    font-size: 21px;
+                    font-weight: 500;
                     margin-bottom: 0px;
                 }
             }
@@ -77,21 +80,23 @@
 
                 p{
                     color:$c-blue;
-                    font:500 18px "Inter";
+                    font-size: 21px;
+                    font-weight: 500;
                 }
    
                 .button-edit{
                     height: 40px;
                     width: 150px;
                     border-radius: 16px;
-                    font:700 18px "Inter";
+                    font-size: 18px;
+                    font-weight: 700;
                     cursor: pointer;
-                    background-color: #B4D6FF;
-                    border: 2px solid #3290FF;
-                    color:#3290FF;
+                    background-color:#3290FF;
+                    border: none;
+                    color:$c-white;
 
                     &:hover{
-                        background-color: rgb(50, 144, 255, 0.5);
+                        background-color: rgb(50, 144, 255, 0.8);
                     }
                 }
 
@@ -99,11 +104,12 @@
                     height: 40px;
                     width: 150px;
                     border-radius: 16px;
-                    font:700 18px "Inter";
+                    font-size: 18px;
+                    font-weight: 700;
                     cursor: pointer;
-                    background-color: #FFB4B4;
-                    color:#EF0A0A;
-                    border:2px solid rgb(239,10,10);
+                    background-color: #EF0A0A;
+                    color:$c-white;
+                    border:none;
 
                     &:hover{
                         background-color: rgb(239,10,10,0.5);
@@ -121,14 +127,22 @@
                 width: 160px;
                 height: 42px;
                 background-color: $c-white;
-                font:700 18px "Inter";
+                font-size: 18px;
+                font-weight: 700;
                 cursor: pointer;
                 box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
                 border: none;
                 border-radius: 16px;
 
                 &:hover{
-                    background-color: rgba(255, 255, 255, 0.5);
+                    background-color:  $c-blue;
+                    color: white;
+                    transition-duration: 0.5s;
+                }
+
+                &:active{
+                    background-color:  $c-lightBlue;
+                    color: $c-blue;
                 }
             }
         }
