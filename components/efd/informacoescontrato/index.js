@@ -7,7 +7,7 @@ import { TextField } from '@material-ui/core';
 export default function InformacoesContato({register}) {
     return(
 
-<Container maxWidth="sm" className={style.conteiner}>
+        <Container maxWidth="sm" className={style.conteiner}>
           <Typography  variant="h5" className={style.title} >
             Informações Para Contato
           </Typography>

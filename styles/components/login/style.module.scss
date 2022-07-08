@@ -1,0 +1,63 @@
+@import 'styles/var';
+
+.paper{
+  display: grid;
+  justify-items: center;
+  justify-content: center;
+  grid-auto-columns: 95%;
+  padding-bottom: 100px;
+
+}
+.login{
+  background-color: #E1E7F2;
+  padding: 40px;
+  border-radius: 30px;
+  min-width: 648px;
+  width: 70%;
+  display: grid;
+  row-gap: 20px;
+  text-align: center;
+}
+
+.title{
+  font-style: 100px;
+  color: $c-blue;
+
+}
+
+.alerta{
+  color: red;
+  display: flex;
+  align-items: baseline;
+
+}
+
+.form{
+  width: '100%';
+  color: $c-lightBlue;
+  background-color: $c-white;
+}
+.control{
+  color: $c-blue;
+}
+
+.submit{
+  display: flex;
+  padding-top: 30px;
+  justify-content: center;
+
+  button{
+    width: 160px;
+    height: 42px;
+    background-color: $c-white;
+    font:700 18px "Inter";
+    cursor: pointer;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: none;
+    border-radius: 16px;
+
+    &:hover{
+      background-color: rgba(255, 255, 255, 0.5);
+    }
+  }
+}

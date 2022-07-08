@@ -3,10 +3,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Typography from '@material-ui/core/Typography';
 import Container from '@material-ui/core/Container';
 import Radio from '@material-ui/core/Radio';
-import Select  from '@material-ui/core/Select';
-import MenuItem from '@material-ui/core/MenuItem';
 import style from '../../../styles/components/efd/adicionar/style.module.scss';
 import { useEffect, useState } from 'react';
+import SelectClassificacao from '../../select/selectClassificacao';
+import SelectSituacao from '../../select/situacao';
 
 
 
@@ -62,43 +62,17 @@ export default function InformacoesContribuinte({
         </Typography>
         <div className={style.inputDivided}>
           <h4 className={style.subtitulo}>Classificação do Contribuinte</h4>
-          <Select
-            labelId="classificacao"
-            id="classificacao"
-            label="Selecione"
-            value={classificacao}
-            onChange={handleChangeClassificacao}
-            variant='standard'
-            className={style.select}
-            displayEmpty   
-          >
-            <MenuItem value="" disabled>
-            Selecione
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <SelectClassificacao
+            classificacao={classificacao}
+            handleChangeClassificacao={handleChangeClassificacao}
+          />
         </div>
         <div className={style.inputDivided}>
           <h4 className={style.subtitulo}>Situação da Pessoa Jurídica</h4>
-          <Select
-            labelId="pessoa"
-            id="pessoa"
-            label="Selecione"
-            value={pessoa}
-            onChange={handleChangePessoa}
-            variant='standard'
-            className={style.select}
-            displayEmpty   
-          >
-            <MenuItem value="" disabled>
-              Selecione
-            </MenuItem>
-            <MenuItem value={10}>Ten</MenuItem>
-            <MenuItem value={20}>Twenty</MenuItem>
-            <MenuItem value={30}>Thirty</MenuItem>
-          </Select>
+          <SelectSituacao
+            pessoa={pessoa}
+            handleChangePessoa={handleChangePessoa}
+          />
         </div>
         <br/><br/>
         <div className={style.inputDivided}>

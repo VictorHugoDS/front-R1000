@@ -1,8 +1,8 @@
-export default function Home() {
 
+
+export default function Home() {
+  
   return (
-    <>
-      olá mundo
-    </>
+    <h1>ola</h1>
   )
 }
