@@ -78,13 +78,16 @@
 }
 
 .button{
-  font-size: large;
-  background-color: white;
-  border-color: $c-gray;
-  border-style: solid;
+  width: 250px;
+  height: 42px;
+  background-color: $c-white;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border: none;
   border-radius: 16px;
-  padding: 7px;
-  cursor:pointer;
+
 }
 
 .button:hover{

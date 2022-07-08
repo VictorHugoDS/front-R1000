@@ -112,7 +112,7 @@
                     border:none;
 
                     &:hover{
-                        background-color: rgb(239,10,10,0.8);
+                        background-color: rgb(239,10,10,0.5);
                     }
                 }
             }   
@@ -135,7 +135,14 @@
                 border-radius: 16px;
 
                 &:hover{
-                    background-color: rgba(255, 255, 255, 0.5);
+                    background-color:  $c-blue;
+                    color: white;
+                    transition-duration: 0.5s;
+                }
+
+                &:active{
+                    background-color:  $c-lightBlue;
+                    color: $c-blue;
                 }
             }
         }

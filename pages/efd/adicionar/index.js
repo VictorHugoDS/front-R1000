@@ -108,6 +108,7 @@ export default function Home() {
               className={style.button}
               label='text'
               type='button'
+              style={{ width: "215px" }}
             >Assinar Documento</button>
           </div>
 
