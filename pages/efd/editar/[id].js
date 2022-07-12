@@ -19,24 +19,51 @@ export default function Home() {
 
   const asyncFuncToLoadData = async() =>(
     {
-      inscricao:'21.321.321/4321-12',
-      acordo: "nao",
-      classificacaoContribuinte: 20,
-      desoneracao: "nao",
-      escrituracao: "sim",
-      informacoesContribuinte:{
-        cpf: "627.338.830-03",
-        email: "Monze.g@hotmail",
-        nome: "Monze Golla Vaxo",
-        telefone: "(21) 67676-767",
+      "id": "10",
+      "ideEvento": {
+        "tpAmb": "*",
+        "procEmi": "*",
+        "verProc": "********"
       },
-      situacaoPessoaJuridica: 30,
-      softwareHouse:{
-        cnpj: "80.176.343/0001-40",
-        contato: "Pueir Siesulas Yadbhi",
-        email: "Pueir@gmail.com",
-        razao: "PueirComercios LTDA.",
-        telefone: "(21) 98765-542",
+      "ideContri": {
+        "tpInsc": "*",
+        "nrInsc": "******"
+      },
+      "infoContri": {
+        "alteracao": {
+          "idePeriodo": {
+            "iniValid": "***",
+            "fimValid": "***"
+          },
+          "infoCadastro": {
+            "clasTrib": "**",
+            "indEscrituracao": "*",
+            "indDesoneracao": "*",
+            "indAcordoSemMulta": "*",
+            "indSitPJ": "*",
+            "indUniao": "*",
+            "dtTransfFinsLucr": "****",
+            "dtObito": "****",
+            "contato": {
+              "nmCtt": "************************",
+              "cpfCtt": "*****",
+              "foneFixo": "*****",
+              "foneCel": "*****",
+              "email": "********************"
+            },
+            "softHouse": [
+              "629e6bd8376b320677695561"
+            ],
+            "infoEFR": {
+              "ideEFR": "*",
+              "cnpjEFR": "******"
+            },
+            "novaValidade": {
+              "iniValid": "***",
+              "fimValid": "***"
+            }
+          }
+        }
       }
     }
   )

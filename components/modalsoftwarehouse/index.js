@@ -8,6 +8,7 @@ import style from '../../styles/components/modal/style.module.scss';
 import { TextField } from '@material-ui/core';
 import { set, useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
+import { Post } from '../../lib/api';
 
 export default function softwareHause({ open, handleClose, setData, defaultValues }) {
 
@@ -26,7 +27,12 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
       "email":values.email,
       "cnpjSoftHouse":values.cnpj
    }
-    setData(resp)
+   
+    const id = Post('/softhouse',resp)
+    id.then((response)=>{
+      console.log(response)
+      setData(response)
+    })
     handleClose()
   }
 
