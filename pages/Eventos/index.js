@@ -3,7 +3,7 @@ import { Modal, CircularProgress } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { api, GetAll } from "../../lib/api";
 import Home from "../efd/editar/[id]";
-import "../efd/adicionar/index";
+import { useRouter } from 'next/router'
 
 export default function Eventos() {
 
@@ -14,7 +14,8 @@ export default function Eventos() {
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const [loading, setLoading] = useState(false);
     const [openEditEvent, setOpenEditEvent] = useState(false);
-    const [openCreateEvent, setOpenCreateEvent] = useState(false);
+
+    const Router = useRouter();
 
     useEffect(() => async () => {
         setLoading(true);
@@ -122,17 +123,13 @@ export default function Eventos() {
                     }}>
                     <button onClick={(e) => {
                         e.preventDefault();
-                        setOpenCreateEvent(true);
-
+                        Router.push('/efd/adicionar')
                     }}>
                         Criar evento
                     </button>
                 </div>
             </div>}
-
             {openEditEvent && <Home />}
-
-            {openCreateEvent && <Home />}
 
             {openModalDelete &&
                 <Modal
