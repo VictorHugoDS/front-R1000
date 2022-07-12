@@ -17,11 +17,10 @@ export default function Eventos() {
 
     const Router = useRouter();
 
-    useEffect(() => async () => {
+    const loadData = async() =>{
         setLoading(true);
         const vetor = []
         const temp = await GetAll('/contribuinte/')
-        // console.log("teste",temp?.data?.data?.[0])
         setData(temp?.data?.data?.[0])
         const test = (temp?.data?.data?.[0])
         test.forEach((card, ind) => {
@@ -36,7 +35,9 @@ export default function Eventos() {
 
         setCards(vetor);
         setLoading(false);
-    }, [])
+    }
+
+    useEffect(() => loadData, [])
 
     const handleDelete = (e, card) => {
         setDetailsCard(card);
@@ -55,8 +56,11 @@ export default function Eventos() {
 
     const handleSubmitDelete = async () => {
         setLoading(true);
-        await api.delete(`/contribuinte/${detailsCard.id}`).then((res) => console.log(res)).catch((err) => console.log(err))
+        console.log(detailsCard)
+        await api.delete(`/contribuinte/${detailsCard.id}`).then((res) => console.log(err)).catch((err) => console.log(err))
+        setOpenModalDelete(false);
         setLoading(false);
+        loadData();
     }
 
     return (
@@ -75,6 +79,7 @@ export default function Eventos() {
                                 <a href="" onClick={(e) => {
                                     e.preventDefault();
                                     handleOpenModal();
+                                    console.log(card)
                                     setDetailsCard(card);
                                 }}>ver</a>
 
@@ -191,43 +196,13 @@ export default function Eventos() {
                         backgroundColor: "#ffff",
                         borderRadius: "4px",
                         padding: "10px 20px",
+                        maxWidth: "80vh"
                     }}>
 
                         <div>
-                            <p>{detailsCard.id}</p>
-                            <p>{detailsCard.ideEvento.tpAmb}</p>
-                            <p>{detailsCard.ideEvento.procEmi}</p>
-                            <p>{detailsCard.ideEvento.verProc}</p>
-                            <p>{detailsCard.ideContri.tpInsc}</p>
-                            <p>{detailsCard.ideContri.nrInsc}</p>
+                            
+                        {JSON.stringify(detailsCard, null, "\t")}    
 
-                            <p>{detailsCard.infoContri.inclusao.idePeriodo.iniValid}</p>
-                            <p>{detailsCard.infoContri.inclusao.idePeriodo.fimValid}</p>
-
-                            <div style={{ paddingLeft: "10px" }}>
-                                <p style={{ fontWeight: 700 }}>Informações do cadastro</p>
-                                <ul>
-                                    <li>{detailsCard.infoContri.infoCadastro.clasTrib}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.indEscrituracao}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.indDesoneracao}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.indAcordoSemMulta}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.indSitPJ}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.indUniao}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.dtTransfFinsLucr}</li>
-                                    <li>{detailsCard.infoContri.infoCadastro.dtObito}</li>
-                                </ul>
-
-                                <div style={{ paddingLeft: "10px" }}>
-                                    <p style={{ fontWeight: 700 }}>Informações de contato</p>
-                                    <ul>
-                                        <li>{detailsCard.infoContri.infoCadastro.contato.nmCtt}</li>
-                                        <li>{detailsCard.infoContri.infoCadastro.contato.cpfCtt}</li>
-                                        <li>{detailsCard.infoContri.infoCadastro.contato.foneFixo}</li>
-                                        <li>{detailsCard.infoContri.infoCadastro.contato.foneCel}</li>
-                                        <li>{detailsCard.infoContri.infoCadastro.contato.email}</li>
-                                    </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </Modal>
