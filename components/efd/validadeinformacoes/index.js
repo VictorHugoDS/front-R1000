@@ -10,14 +10,16 @@ import { TextField } from '@material-ui/core';
 
 
 export default function Validade({
-  incricao,
   inicioValidade,
   setInicioValidade,
   fimValidade,
   setFimValidade,
+  resposta,
+  setResposta,
+  register
 }) {
 
-  const [resposta, setResposta] = useState('cnpj')
+  
 
 
   return (
@@ -56,6 +58,7 @@ export default function Validade({
               variant="standard"
               fullWidth
               size="small"
+              {...register("inscricao")}
             />
           </>
         ) : (
@@ -66,6 +69,7 @@ export default function Validade({
               variant="standard"
               fullWidth
               size="small"
+              {...register("inscricao")}
             />
           </>
         )}

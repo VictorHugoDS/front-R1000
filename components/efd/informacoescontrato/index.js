@@ -14,7 +14,7 @@ export default function InformacoesContato({register}) {
           <div className={style.inputDivided}>
             <h4 className={style.title}>Nome</h4>
             <TextField id="outlined-basic" 
-              placeholder='João da Silva'
+              placeholder='Nome para contato'
               variant="standard"
               fullWidth
               size="small"

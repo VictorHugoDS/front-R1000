@@ -18,7 +18,14 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
   const { register, handleSubmit, getValues, setValue } = useForm();
 
   const onSubmit = (data) => {
-    const resp = { ...data, exited: false }
+    const values = getValues()
+    const resp = {
+      "nmRazao":values.razao,
+      "nmContato":values.contato,
+      "telefone":values.telefone,
+      "email":values.email,
+      "cnpjSoftHouse":values.cnpj
+   }
     setData(resp)
     handleClose()
   }
@@ -95,7 +102,7 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
             <div className={style.inputFull}>
               <h5 className={style.title}>Nome Contato na Empresa</h5>
               <TextField id="outlined-basic"
-                placeholder='João da Silva'
+                placeholder='Nome para contato'
                 variant="outlined"
                 fullWidth
                 size="small"

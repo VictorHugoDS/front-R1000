@@ -1,6 +1,8 @@
 import moment from "moment"
 import Layout from "../../components/layout";
 import { withStyles, Button } from "@material-ui/core"
+import { useEffect, useState } from "react";
+import { GetAll } from "../../lib/api";
 
 export const ButtonCSS = withStyles({
     root: {
@@ -11,6 +13,23 @@ export const ButtonCSS = withStyles({
 
 
 export default function Eventos() {
+
+    const [data,setData] = useState();
+    const [cardss,setCards] = useState()
+
+    useEffect(()=>async()=>{
+        await GetAll('/contribuinte',setData)
+    },[])
+
+    useEffect(()=>{
+        const vetor = []
+        if(data){
+            data.forEach((card, ind)=>{
+                
+            })
+        }
+    },[data])
+
 
     const cards = [
         {

@@ -9,6 +9,8 @@ import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import InformacoesContribuinte from '../../../components/efd/informacoescontribuinte';
 import Validade from '../../../components/efd/validadeinformacoes';
+import { Post } from '../../../lib/api';
+
 
 export default function Home() {
 
@@ -24,27 +26,67 @@ export default function Home() {
   const [pessoa, setPessoa] = useState('');
   const [softwareHouse, setSoftwareHouse] = useState(null);
   const [radioOptions, setRadioOptions] = useState(null);
+  const [resposta, setResposta] = useState('cnpj')
 
-  const onSubmit = (data) => {
-    const resp = {
-      inicioValidade,
-      fimValidade,
-      classificacaoContribuinte: classificacao,
-      situacaoPessoaJuridica: pessoa,
-      ...radioOptions,
-      softwareHouse: {
-        ...softwareHouse
-      },
-      informacoesContribuinte: {
-        ...getValues()
-      },
-    }
-    console.log(resp)
+  const formatDate = (date) =>{
+    if(date){
+      const day = (date.getDate()+"").padStart(2, "0")
+      const mouth = ((date.getMonth()+1)+"").padStart(2, "0")
+      const year = date.getFullYear()
+      return year+'-'+ mouth
+    } else return date
   }
 
+  const onSubmit = async(data) => {
+    const values = getValues()
+    const resp = {
+      "evtInfoContri":{
+         "ideEvento":{
+            "tpAmb":"",
+            "procEmi":"",
+            "verProc":""
+         },
+         "ideContri":{
+            "tpInsc":resposta === 'cnpj' ? '2' : '1',
+            "nrInsc": values.inscricao,
+         },
+         "infoContri":{
+            "inclusao":{
+               "idePeriodo":{
+                  "iniValid":formatDate(inicioValidade),
+                  "fimValid":formatDate(fimValidade)
+               },
+               "infoCadastro":{
+                  "clasTrib":classificacao,
+                  "indEscrituracao":radioOptions.escrituracao === 'sim' ? true : false,
+                  "indDesoneracao":radioOptions.desoneracao === 'sim' ? true : false,
+                  "indAcordoSemMulta":radioOptions.acordo === 'sim' ? true : false,
+                  "indSitPJ":pessoa,
+                  "indUniao":"",
+                  "dtTransfFinsLucr":"",
+                  "dtObito":"",
+                  "contato":{
+                     "nmCtt":values.nome,
+                     "cpfCtt":values.cpf,
+                     "foneFixo":values.telefone,
+                     "foneCel":values.telefone,
+                     "email":values.email
+                  },
+                  "softHouse":[
+                     
+                  ],
+                  "infoEFR":{
+                     "ideEFR":"",
+                     "cnpjEFR":"**"
+                  }
+               }
+            }
+         }
+      }
+   }
+   await Post('/contribuinte/', resp).then(response=>console.log(response))
+  }
 
-
-  const incricao = null
 
   return (
     <>
@@ -66,11 +108,13 @@ export default function Home() {
       </Typography>
       <form className={style.form} onSubmit={handleSubmit(onSubmit)}>
         <Validade
-          incricao={incricao}
           inicioValidade={inicioValidade}
           setInicioValidade={setInicioValidade}
           fimValidade={fimValidade}
           setFimValidade={setFimValidade}
+          resposta={resposta}
+          setResposta={setResposta}
+          register={register}
         />
 
         <InformacoesContribuinte
