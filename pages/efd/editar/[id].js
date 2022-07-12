@@ -79,9 +79,9 @@ export default function Home() {
       setClassificacao(e?.classificacaoContribuinte ?? '')
       setPessoa(e?.situacaoPessoaJuridica ?? '')
       setRadioOptions({
-        escrituracao:e?.escrituracao,
-        desoneracao:e?.desoneracao,
-        acordo:e?.acordo,
+        escrituracao:e.infoContri.alteracao.infoCadastro.indEscrituracao,
+        desoneracao:e.infoContri.alteracao.infoCadastro.indDesoneracao,
+        acordo:e.infoContri.alteracao.infoCadastro.indAcordoSemMulta,
       })
       setInicioValidade(e.infoContri.alteracao.idePeriodo.iniValid)
       setFimValidade(e.infoContri.alteracao.idePeriodo.fimValid)
