@@ -8,13 +8,10 @@ export default function SelectClassificacao({classificacao,handleChangeClassific
 
   const [resp,setResp]=useState()
 
-  useEffect(() =>{
-    const asyncBackendCall = async () => {
-      await GetAll('/contribuinte/classificacaoContribuinte',setResp)
-    }
-    
-    asyncBackendCall();
-    console.log(resp)
+  useEffect(() => async()=>{
+    const response = await GetAll('/contribuinte/classificacaoContribuinte')
+
+    setResp(response?.data?.data)
   }, [])
 
     return(

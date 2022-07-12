@@ -10,7 +10,8 @@ export default function SelectSituacao({pessoa,handleChangePessoa}) {
   
   useEffect(() =>{
     const asyncBackendCall = async () => {
-      await GetAll('/contribuinte/situacaopj',setResp)
+      const response = await GetAll('/contribuinte/situacaopj')
+      setResp(response?.data?.data)
     }
     
     asyncBackendCall();

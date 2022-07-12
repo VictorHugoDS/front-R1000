@@ -29,7 +29,7 @@ export default function Validade({
         Selecione o tipo de Inscrição
       </Typography>
 
-      {disabled && (
+      {!disabled && (
         <div className={style.inputDivided}>
           <h4 className={style.subtitulo}>Selecione tipo de Inscrição</h4>
           <RadioGroup
@@ -73,7 +73,7 @@ export default function Validade({
               fullWidth
               size="small"
               {...register("inscricao")}
-              disabled
+              disabled={disabled}
             />
           </>
         )}
@@ -91,7 +91,7 @@ export default function Validade({
           className={style.calendar}
           placeholderText="dd/mm/yyyy"
           maxDate={new Date()}
-          disabled
+          disabled={disabled}
         />
       </div>
       <div className={style.inputDivided}>
@@ -103,7 +103,7 @@ export default function Validade({
           className={style.calendar}
           minDate={new Date()}
           placeholderText="dd/mm/yyyy"
-          disabled
+          disabled={disabled}
         />
       </div>
       <br /><br />

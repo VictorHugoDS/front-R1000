@@ -74,16 +74,17 @@ export default function SingIn() {
                         required
                         fullWidth
                         placeholder={'000.000.000-00'}
-                        autoFocus
+                        //autoFocus
                         {...register("cpf")}
-                        onBlur={(e) =>{setCpf(cpfValid(e))}}
+                    //onBlur={(e) =>{setCpf(cpfValid(e))}}
                     />
                     <p className={style.alerta} >{cpf || "CPF incorreto"}</p>
                     <h2>Senha</h2>
                     <TextField
-                        className={style.form}
+                        //className={style.form}
                         variant="outlined"
                         margin="normal"
+                        label="fff"
                         //required
                         fullWidth
                         placeholder='Senha'

@@ -5,10 +5,11 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import Slide from '@material-ui/core/Slide';
 import style from '../../styles/components/modal/style.module.scss';
-import { TextField } from '@material-ui/core';
+import { TextField,Snackbar } from '@material-ui/core';
 import { set, useForm } from "react-hook-form";
 import PropTypes from 'prop-types';
 import { Post } from '../../lib/api';
+import { Alert } from '@material-ui/lab';
 
 export default function softwareHause({ open, handleClose, setData, defaultValues }) {
 
@@ -17,6 +18,7 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
   });
 
   const { register, handleSubmit, getValues, setValue } = useForm();
+  const [error,setError] = useState(false);
 
   const onSubmit = (data) => {
     const values = getValues()
@@ -27,12 +29,21 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
       "email":values.email,
       "cnpjSoftHouse":values.cnpj
    }
-   
+   try {
     const id = Post('/softhouse',resp)
+    // console.log({...resp,id:'response?.data?.id_inserted'})
     id.then((response)=>{
-      console.log(response)
-      setData(response)
+      setData({...resp,id:response?.data?.id_inserted})
+    }).catch(err=>{
+      console.log("teste")
+      setError(true);
     })
+
+   } catch (error) {
+    throw new Error("error")
+   }
+    
+    
     handleClose()
   }
 
@@ -43,12 +54,13 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
 
   useEffect((() => {
     if (open && defaultValues) {
-      const { cnpj, telefone, razao, contato, email } = defaultValues
-      setValue('cnpj', cnpj)
+      const { id,cnpjSoftHouse, telefone, nmRazao, nmContato, email } = defaultValues
+      setValue('cnpj', cnpjSoftHouse)
       setValue('telefone', telefone)
-      setValue('razao', razao)
-      setValue('contato', contato)
+      setValue('razao', nmRazao)
+      setValue('contato', nmContato)
       setValue('email', email)
+      console.log(id)
     }
   }), [open])
 
@@ -140,6 +152,9 @@ export default function softwareHause({ open, handleClose, setData, defaultValue
           </form>
         </DialogContent>
       </Dialog>
+
+      {<Alert severity="error"> Erro</Alert>}
+
     </>
   )
 }

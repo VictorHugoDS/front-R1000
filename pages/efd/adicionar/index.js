@@ -49,7 +49,7 @@ export default function Home() {
             "verProc":""
          },
          "ideContri":{
-            "tpInsc":resposta === 'cnpj' ? '2' : '1',
+            "tpInsc":resposta === 'cnpj' ? '1' : '2',
             "nrInsc": values.inscricao,
          },
          "infoContri":{
@@ -70,12 +70,12 @@ export default function Home() {
                   "contato":{
                      "nmCtt":values.nome,
                      "cpfCtt":values.cpf,
-                     "foneFixo":values.telefone,
+                     "foneFixo":"",
                      "foneCel":values.telefone,
                      "email":values.email
                   },
                   "softHouse":[
-                     
+                    softwareHouse.id
                   ],
                   "infoEFR":{
                      "ideEFR":"",
@@ -88,7 +88,7 @@ export default function Home() {
    }
    console.log(resp);
    await Post('/contribuinte/', resp).then(response=>console.log(response));
-   router.push('/eventos');
+  //  router.push('/eventos');
   }
 
 
@@ -118,8 +118,7 @@ export default function Home() {
           setFimValidade={setFimValidade}
           resposta={resposta}
           setResposta={setResposta}
-          register={register}
-        />
+          register={register}       />
 
         <InformacoesContribuinte
           classificacao={classificacao}
@@ -143,8 +142,10 @@ export default function Home() {
               label='text'
               type='button'
             >Incluir Software House</button>
+            
           </div>
-
+        
+          {softwareHouse?.id || 'olá mundo'}
         </Container>
 
         <Container maxWidth="sm" className={style.conteiner}>

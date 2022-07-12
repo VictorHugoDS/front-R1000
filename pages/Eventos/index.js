@@ -21,13 +21,13 @@ export default function Eventos() {
         setLoading(true);
         const vetor = []
         const temp = await GetAll('/contribuinte/')
-        console.log("teste",temp?.data?.data?.[0])
+        // console.log("teste",temp?.data?.data?.[0])
         setData(temp?.data?.data?.[0])
         const test = (temp?.data?.data?.[0])
         test.forEach((card, ind) => {
             vetor.push({
-                data_inicio: new Date(card.infoContri.inclusao.inivalid),
-                data_fim: new Date(card.infoContri.inclusao.fimValid),
+                data_inicio: card.infoContri.inclusao.inivalid,
+                data_fim: card.infoContri.inclusao.fimValid,
                 Recibo: card.ideContri.nrInsc,
                 id: card.id,
                 ...card
@@ -37,34 +37,6 @@ export default function Eventos() {
         setCards(vetor);
         setLoading(false);
     }, [])
-
-    // useEffect(() => {
-    //     const vetor = []
-    //     if (data) {
-    //         data.forEach((card, ind) => {
-    //             vetor.push({
-    //                 data_inicio: new Date(card.infoContri.inclusao.inivalid),
-    //                 data_fim: new Date(card.infoContri.inclusao.fimValid),
-    //                 Recibo: card.ideContri.nrInsc,
-    //                 id: card.id,
-    //                 ...card
-    //             })
-    //         })
-
-    //         setCards(data);
-    //     }
-    // }, [data])
-
-    /**SO EXCLUIR ESSE ARRAY E TROCAR O NOME DO CARDS PARA CARDSS.MAP */
-    // const cards = [
-    //     {
-    //         id: 0,
-    //         Recibo: 'Numero do recibo',
-    //         data_inicio: new Date(),
-    //         data_fim: new Date,
-    //     },
-    // ]
-
 
     const handleDelete = (e, card) => {
         setDetailsCard(card);
@@ -94,7 +66,7 @@ export default function Eventos() {
             {loading ? <CircularProgress style={{ position: "absolute", left: "50%", top: "50%" }} /> : <div className="content-eventos">
                 <h1 className="titulo-eventos">Eventos Enviados</h1>
 
-                {cards.map((card, index) => {
+                {cards?.map((card, index) => {
                     return (
                         <div key={index} className="card-content" id={card.id}>
                             <div className="container-num-recibo">
