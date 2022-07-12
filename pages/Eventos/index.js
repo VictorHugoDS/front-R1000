@@ -8,7 +8,7 @@ import { useRouter } from 'next/router'
 export default function Eventos() {
 
     const [data, setData] = useState();
-    const [cardss, setCards] = useState();
+    const [cards, setCards] = useState();
     const [openModal, setOpenModal] = useState(false);
     const [detailsCard, setDetailsCard] = useState();
     const [openModalDelete, setOpenModalDelete] = useState(false);
@@ -19,36 +19,51 @@ export default function Eventos() {
 
     useEffect(() => async () => {
         setLoading(true);
-        await GetAll('/contribuinte/', setData).then((res) => console.log(res)).catch((err) => console.log(err))
+        const vetor = []
+        const temp = await GetAll('/contribuinte/')
+        console.log("teste",temp?.data?.data?.[0])
+        setData(temp?.data?.data?.[0])
+        const test = (temp?.data?.data?.[0])
+        test.forEach((card, ind) => {
+            vetor.push({
+                data_inicio: new Date(card.infoContri.inclusao.inivalid),
+                data_fim: new Date(card.infoContri.inclusao.fimValid),
+                Recibo: card.ideContri.nrInsc,
+                id: card.id,
+                ...card
+            })
+        })
+
+        setCards(vetor);
         setLoading(false);
     }, [])
 
-    useEffect(() => {
-        const vetor = []
-        if (data) {
-            data.forEach((card, ind) => {
-                vetor.push({
-                    data_inicio: new Date(card.infoContri.inclusao.inivalid),
-                    data_fim: new Date(card.infoContri.inclusao.fimValid),
-                    Recibo: card.ideContri.nrInsc,
-                    id: card.id,
-                    ...card
-                })
-            })
+    // useEffect(() => {
+    //     const vetor = []
+    //     if (data) {
+    //         data.forEach((card, ind) => {
+    //             vetor.push({
+    //                 data_inicio: new Date(card.infoContri.inclusao.inivalid),
+    //                 data_fim: new Date(card.infoContri.inclusao.fimValid),
+    //                 Recibo: card.ideContri.nrInsc,
+    //                 id: card.id,
+    //                 ...card
+    //             })
+    //         })
 
-            setCards(data);
-        }
-    }, [data])
+    //         setCards(data);
+    //     }
+    // }, [data])
 
     /**SO EXCLUIR ESSE ARRAY E TROCAR O NOME DO CARDS PARA CARDSS.MAP */
-    const cards = [
-        {
-            id: 0,
-            Recibo: 'Numero do recibo',
-            data_inicio: new Date(),
-            data_fim: new Date,
-        },
-    ]
+    // const cards = [
+    //     {
+    //         id: 0,
+    //         Recibo: 'Numero do recibo',
+    //         data_inicio: new Date(),
+    //         data_fim: new Date,
+    //     },
+    // ]
 
 
     const handleDelete = (e, card) => {
