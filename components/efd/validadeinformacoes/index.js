@@ -16,7 +16,8 @@ export default function Validade({
   setFimValidade,
   resposta,
   setResposta,
-  register
+  register,
+  disabled
 }) {
 
   
@@ -28,27 +29,29 @@ export default function Validade({
         Selecione o tipo de Inscrição
       </Typography>
 
-      <div className={style.inputDivided}>
-        <h4 className={style.subtitulo}>Selecione tipo de Inscrição</h4>
-        <RadioGroup
-          aria-labelledby="demo-radio-buttons-group-label"
-          defaultValue="cnpj"
-          name="radio-buttons-group"
-          row
-          onChange={(e) => { setResposta(e.target.value) }}
-        >
-          <div className={style.inputDivided}>
-            <FormControlLabel value="cpf" control={
-              <Radio size="small"
-                color="default" />
-            } label="CPF" />
-            <FormControlLabel value="cnpj" control={
-              <Radio size="small"
-                color="default" />
-            } label="CNPJ" />
-          </div>
-        </RadioGroup>
-      </div>
+      {disabled && (
+        <div className={style.inputDivided}>
+          <h4 className={style.subtitulo}>Selecione tipo de Inscrição</h4>
+          <RadioGroup
+            aria-labelledby="demo-radio-buttons-group-label"
+            defaultValue="cnpj"
+            name="radio-buttons-group"
+            row
+            onChange={(e) => { setResposta(e.target.value) }}
+          >
+            <div className={style.inputDivided}>
+              <FormControlLabel value="cpf" control={
+                <Radio size="small"
+                  color="default" />
+              } label="CPF" />
+              <FormControlLabel value="cnpj" control={
+                <Radio size="small"
+                  color="default" />
+              } label="CNPJ" />
+            </div>
+          </RadioGroup>
+        </div>
+      )}
       <div className={style.inputSingleLine}>
         {resposta === 'cpf' ? (
           <>
@@ -70,6 +73,7 @@ export default function Validade({
               fullWidth
               size="small"
               {...register("inscricao")}
+              disabled
             />
           </>
         )}
@@ -87,6 +91,7 @@ export default function Validade({
           className={style.calendar}
           placeholderText="dd/mm/yyyy"
           maxDate={new Date()}
+          disabled
         />
       </div>
       <div className={style.inputDivided}>
@@ -98,6 +103,7 @@ export default function Validade({
           className={style.calendar}
           minDate={new Date()}
           placeholderText="dd/mm/yyyy"
+          disabled
         />
       </div>
       <br /><br />

@@ -17,7 +17,7 @@ export default function SingIn() {
 
     const onSubmit = () => {
         if(cpf){
-            router.push("/Eventos")
+            router.push("/eventos")
         }
     };
 
@@ -96,6 +96,7 @@ export default function SingIn() {
                         type="submit"
                         variant="contained"
                         className={style.submit}
+
                     >
                         Entrar
                     </Button>

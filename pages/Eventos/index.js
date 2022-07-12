@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import { withStyles, Button } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { GetAll } from "../../lib/api";
+import { useRouter } from 'next/router'
 
 export const ButtonCSS = withStyles({
     root: {
@@ -16,6 +17,8 @@ export default function Eventos() {
 
     const [data,setData] = useState();
     const [cardss,setCards] = useState()
+    const router = useRouter()
+    
 
     useEffect(()=>async()=>{
         await GetAll('/contribuinte',setData)
@@ -77,7 +80,7 @@ export default function Eventos() {
 
                 {cards.map((card, index) => {
                     return (
-                        <div key={index} className="card-content">
+                        <div key={index} className="card-content" id={card.id}>
                             <div className="container-num-recibo">
 
                                 <p>Recibo:{card.Recibo}</p>
@@ -95,7 +98,7 @@ export default function Eventos() {
                                     <p>Fim:{moment(card.data_fim).format('L')}</p>
                                 </div>
                                 <div>
-                                    <button className="button-edit">Editar</button>
+                                    <button className="button-edit" onClick={()=>{router.push(`/efd/editar/${card.id}`)}}>Editar</button>
                                     <button className="button-excluir" onClick={(e) => handleDelete(e, card.id)}>Excluir</button>
                                 </div>
                             </div>
@@ -110,7 +113,8 @@ export default function Eventos() {
                         display: "flex",
                         justifyContent: "center",
                     }}>
-                    <button>
+                    <button
+                    onClick={()=>{router.push('/efd/adicionar')}}>
                         Criar evento
                     </button>
                 </div>

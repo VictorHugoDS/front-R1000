@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import InformacoesContribuinte from '../../../components/efd/informacoescontribuinte';
 import Validade from '../../../components/efd/validadeinformacoes';
 import { Post } from '../../../lib/api';
+import { useRouter } from 'next/router'
 
 
 export default function Home() {
@@ -26,7 +27,8 @@ export default function Home() {
   const [pessoa, setPessoa] = useState('');
   const [softwareHouse, setSoftwareHouse] = useState(null);
   const [radioOptions, setRadioOptions] = useState(null);
-  const [resposta, setResposta] = useState('cnpj')
+  const [resposta, setResposta] = useState('cnpj');
+  const router = useRouter();
 
   const formatDate = (date) =>{
     if(date){
@@ -84,7 +86,9 @@ export default function Home() {
          }
       }
    }
-   await Post('/contribuinte/', resp).then(response=>console.log(response))
+   console.log(resp);
+   await Post('/contribuinte/', resp).then(response=>console.log(response));
+   router.push('/eventos');
   }
 
 
@@ -167,6 +171,7 @@ export default function Home() {
           <button
             className={style.buttonNotOk}
             label='text'
+            onClick={()=>{router.push('/eventos')}}
           >Cancelar</button>
 
           <button variant="contained"

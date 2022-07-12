@@ -9,6 +9,7 @@ import { useForm } from "react-hook-form";
 import "react-datepicker/dist/react-datepicker.css";
 import InformacoesContribuinte from '../../../components/efd/informacoescontribuinte';
 import Validade from '../../../components/efd/validadeinformacoes';
+import { Get } from '../../../lib/api';
 
 export default function Home() {
 
@@ -72,24 +73,28 @@ export default function Home() {
   const [resp,setResp] = useState();
 
   useEffect(()=>{
-    asyncFuncToLoadData().then((e)=>{
+    Get().then((response)=>{
+      const e = response?.data?.[0]
       setResp(e)
       setClassificacao(e?.classificacaoContribuinte ?? '')
       setPessoa(e?.situacaoPessoaJuridica ?? '')
       setRadioOptions({
-        escrituracao:e.escrituracao,
-        desoneracao:e.desoneracao,
-        acordo:e.acordo,
+        escrituracao:e?.escrituracao,
+        desoneracao:e?.desoneracao,
+        acordo:e?.acordo,
       })
-      setValue('nome',e.informacoesContribuinte.nome)
-      setValue('cpf',e.informacoesContribuinte.cpf)
-      setValue('telefone',e.informacoesContribuinte.telefone)
-      setValue('email',e.informacoesContribuinte.email)
+      setInicioValidade(e.infoContri.alteracao.idePeriodo.iniValid)
+      setFimValidade(e.infoContri.alteracao.idePeriodo.fimValid)
+      setValue('nome',e.infoContri.alteracao.infoCadastro.contato.nmCtt)
+      setValue('cpf',e.infoContri.alteracao.infoCadastro.contato.cpfCtt)
+      setValue('telefone',e.infoContri.alteracao.infoCadastro.contato.foneCel)
+      setValue('email',e.infoContri.alteracao.infoCadastro.contato.email)
 
     });
     
   },[])
 
+  const [incricao,setIncricao] = useState()
   const [inicioValidade, setInicioValidade] = useState();
   const [fimValidade, setFimValidade] = useState();
   const [classificacao, setClassificacao] = useState('');
@@ -115,9 +120,6 @@ export default function Home() {
   }
 
 
-
-  const incricao = resp?.inscricao || '00.000.000/0000-00'
-
   return (
     <>
       {open && ( 
@@ -142,6 +144,8 @@ export default function Home() {
             setInicioValidade={setInicioValidade}
             fimValidade={fimValidade}
             setFimValidade={setFimValidade}
+            register={register}
+            disable
           />
 
           <InformacoesContribuinte 
