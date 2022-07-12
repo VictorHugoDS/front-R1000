@@ -3,6 +3,7 @@ import { Modal, CircularProgress } from "@material-ui/core"
 import { useEffect, useState } from "react";
 import { api, GetAll } from "../../lib/api";
 import Home from "../efd/editar/[id]";
+import "../efd/adicionar/index";
 
 export default function Eventos() {
 
@@ -13,6 +14,7 @@ export default function Eventos() {
     const [openModalDelete, setOpenModalDelete] = useState(false);
     const [loading, setLoading] = useState(false);
     const [openEditEvent, setOpenEditEvent] = useState(false);
+    const [openCreateEvent, setOpenCreateEvent] = useState(false);
 
     useEffect(() => async () => {
         setLoading(true);
@@ -45,19 +47,6 @@ export default function Eventos() {
             data_inicio: new Date(),
             data_fim: new Date,
         },
-        {
-            id: 0,
-            Recibo: 'Numero do recibo',
-            data_inicio: new Date(),
-            data_fim: new Date,
-        },
-        {
-            id: 0,
-            Recibo: 'Numero do recibo',
-            data_inicio: new Date(),
-            data_fim: new Date,
-        },
-
     ]
 
 
@@ -131,15 +120,19 @@ export default function Eventos() {
                         display: "flex",
                         justifyContent: "center",
                     }}>
-                    <button>
+                    <button onClick={(e) => {
+                        e.preventDefault();
+                        setOpenCreateEvent(true);
+
+                    }}>
                         Criar evento
                     </button>
                 </div>
             </div>}
 
-            {
-                openEditEvent && <Home />
-            }
+            {openEditEvent && <Home />}
+
+            {openCreateEvent && <Home />}
 
             {openModalDelete &&
                 <Modal
