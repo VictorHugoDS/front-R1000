@@ -13,18 +13,18 @@ export default function SingIn() {
     const { register, handleSubmit } = useForm();
 
     const router = useRouter();
-    const [cpf, setCpf] = useState();
 
     const onSubmit = () => {
-        if(cpf){
-            router.push("/eventos")
-        }
+        router.push("/efd/adicionar")
+
     };
 
+    // verificar se o cpf é válido 
+    //OBS implementar quando fizer o sistema de login
+    const cpfValid = async () =>{
+        //var strCPF = cpf;   
+        console.log(strCPF);
 
-    const cpfValid = (e) =>{
-        var strCPF = e.target.value;
-        
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('.', '');
         strCPF = strCPF.replace('-', '');
@@ -58,46 +58,30 @@ export default function SingIn() {
         }
 
     return (
-        <Container component="main" maxWidth="xs">
+        <Container component="main" >
           <CssBaseline />
           <div className={style.paper}>
                 <h1 className={style.modalTitle}>Login</h1>
             <div className={style.login}>
-
-                <h2>CPF</h2>
-                
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <h2>CPF</h2>
                     <TextField
+                        name='cpf'
                         className={style.form}
-                        variant="outlined"
-                        margin="normal"
-                        required
                         fullWidth
                         placeholder={'000.000.000-00'}
-                        //autoFocus
                         {...register("cpf")}
-                    //onBlur={(e) =>{setCpf(cpfValid(e))}}
                     />
-                    <p className={style.alerta} >{cpf || "CPF incorreto"}</p>
                     <h2>Senha</h2>
                     <TextField
-                        //className={style.form}
-                        variant="outlined"
-                        margin="normal"
-                        label="fff"
-                        //required
                         fullWidth
                         placeholder='Senha'
-                        name="password"
                         type="password"
-                        //autoComplete="current-password"
-                        //{...register(password)}
                     />
                     <Button
                         type="submit"
                         variant="contained"
                         className={style.submit}
-
                     >
                         Entrar
                     </Button>
